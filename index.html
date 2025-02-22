@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <h1 class="logo">LAZYTIMEZ</h1>
+            <ul class="menu">
+                <li><a href="">FILE</a></li>
+                <li><a href="">LOGIN</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content">
+            <div class="card">
+                <img src="img/photo1.jpg" alt="" class="img">
+                <div class="content-card">
+                    <div class="content-text">
+                        <h1>SETTING</h1>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. At voluptate voluptatum molestiae error rerum cumque vero suscipit minus, autem quod maiores mollitia, quas perspiciatis harum! Quaerat ipsa alias numquam vitae?</p>
+                    </div>
+                    <a href="file/LAZYTIME(Setting).zip" class="dowloand button">
+                        DOWLOAND
+                        <div class="hover-effect"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ดักจับการคลิกที่ปุ่มดาวน์โหลด
+        document.querySelector('.dowloand').addEventListener('click', function(event) {
+            event.preventDefault(); // ป้องกันการดาวน์โหลดจริงๆ เพื่อให้แสดง SweetAlert2 ก่อน
+
+            // แสดง SweetAlert2 กับ loading spinner
+            Swal.fire({
+                title: 'กำลังดาวน์โหลด...',
+                html: 'กรุณารอสักครู่',
+                didOpen: () => {
+                    Swal.showLoading(); // เริ่มแสดง loading spinner
+                }
+            });
+
+            // เริ่มการดาวน์โหลดหลังจากแสดงข้อความ
+            setTimeout(() => {
+                window.location.href = this.href;
+                
+                // เมื่อดาวน์โหลดเสร็จแล้ว แสดงข้อความว่า "ดาวน์โหลดเสร็จสมบูรณ์"
+                Swal.fire({
+                    icon: 'success',
+                    title: 'ดาวน์โหลดเสร็จสมบูรณ์',
+                    text: 'ไฟล์ดาวน์โหลดเสร็จเรียบร้อยแล้ว!',
+                    confirmButtonText: 'ตกลง'
+                });
+            }, 2000); // หน่วงเวลา 2 วินาทีเพื่อแสดง spinner ก่อนที่การดาวน์โหลดจะเริ่ม
+        });
+    </script>
+</body>
+</html>
